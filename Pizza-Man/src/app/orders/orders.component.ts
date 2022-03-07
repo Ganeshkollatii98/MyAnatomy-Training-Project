@@ -10,11 +10,14 @@ import { PaymentRestService } from '../payment-rest.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  cartRecipes: Recipe[] = [];
+
+  // Variable Declarations
+  
   userOrders: any;
   user:any;
   isLoggedIn=false;
   constructor(private menuService: MenuService, private orderService: OrdersService,private paymentService:PaymentRestService) {
+    // Calling GetORders Function & user Details funtion
     this.getOrders();
     this.getUserDetails();
     this.isLoggedIn=localStorage.getItem('username')=='false'?false:true
@@ -23,10 +26,8 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  ngDoCheck() {
-    this.cartRecipes = this.menuService.getRecipesFromMenu().filter((recipe) => recipe.getRecipeQty > 0);
-    console.log(this.cartRecipes);
-  }
+
+  // Get UserDetails From payment service 
   getUserDetails(){
     let email = localStorage.getItem('username');
     this.paymentService.getDetailsByEmail(email).subscribe(
@@ -42,27 +43,24 @@ export class OrdersComponent implements OnInit {
     )
   }
    
+  // Get All orders from OrderService 
   getOrders() {
     let email = localStorage.getItem('username');
     if (email != "false") {
       this.orderService.getOrdersByUsername(email).subscribe(
         (data) => {
           this.userOrders = data;          
-          console.log("please check this", data);
         },
         (error) => {
           console.log(error);
-
-        }
-      )
-
-    }
-    
+     })
+    } 
   }
+
+  // Converting Date to UtcString and calling in template file
   covertToString(date:any):any{
       var d=new Date(parseInt(date));
       return d.toUTCString();
   }
-
 
 }

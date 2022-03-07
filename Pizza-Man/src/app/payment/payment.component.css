@@ -1,4 +1,5 @@
 
+/* Buttons Styling */
 #btn{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: #724cf9;
@@ -6,6 +7,8 @@
     font-weight: 500;
     border-radius: 2rem;
 }
+
+/* Model Styling */
 #model{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color:#724cf9;
