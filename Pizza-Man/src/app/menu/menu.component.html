@@ -1,10 +1,13 @@
 <div class="container" id="container">
     <div class="d-flex flex-row justify-content-between">
-
+        <!-- Component Heading -->
         <div class="row fs-1 text-uppercase" id="menuTitle">
             Menu
         </div>
+
+        <!-- Filter DropDown Template -->
         <div class="dropdown " id="filterDropDown">
+            <!-- Filter Button on Menu Component  -->
             <button class="btn btn-secondary dropdown-toggle text-uppercase fw-bold text-light" type="button"
                 id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                 filter
@@ -102,6 +105,8 @@
                     </div>
                     <hr>
                 </li>
+
+                <!-- Filter By Rating  -->
                 <li>
                     <div class="container">
                         <section class="col-12" id="fs_distance_body">
@@ -112,7 +117,7 @@
                                 <ul class="d-flex flex-column justify-content-around">
                                     <li class="d-flex justify-content-between">
                                         <div>
-                                            <!-- Rating -->
+                                            <!--1 star Rating -->
                                             <span>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
@@ -129,7 +134,7 @@
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <div>
-                                            <!-- Rating -->
+                                            <!--2 star Rating -->
                                             <span>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -147,7 +152,7 @@
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <div>
-                                            <!-- Rating -->
+                                            <!-- 3 Star Rating -->
                                             <span>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -166,7 +171,7 @@
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <div>
-                                            <!-- Rating -->
+                                            <!--4 Star Rating -->
                                             <span>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -184,7 +189,7 @@
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <div>
-                                            <!-- Rating -->
+                                            <!--5 Star Rating -->
                                             <span>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -231,6 +236,7 @@
                     <div data-aos="zoom-in-right" data-aos-duration="30" class="card-model" id="card-model"
                         *ngFor="let recipeObj of dummyRecipeObj">
 
+                        <!-- Based on Recipe Type(veg/non-veg) displaying image -->
                         <div id="card-model-image">
                             <img id="recipeTypeIcon" *ngIf="recipeObj.recipeType=='non-veg'"
                                 src="../../../assets/static/images/nonvegicon.svg">
@@ -238,14 +244,18 @@
                                 src="../../../assets/static/images/vegicon.svg">
                             <img id="card-image" src={{recipeObj.recipeIamge}} alt="">
                         </div>
+                        <!-- Products part-2 -->
                         <div class="container-fluid d-flex flex-column justify-content-between p-2 mb-2">
+                            <!-- Recipe Name -->
                             <div class="mt-2">
                                 <p class="fa-1x mb-0">{{recipeObj.recipeName}}</p>
                             </div>
+                            <!-- Recipe Description -->
                             <div>
                                 <p id="card-model-desc" class=" fw-lighter text-muted ">
                                     {{recipeObj.recipeDescirption}}</p>
                             </div>
+                            <!-- Recipe Rating Based on Given -->
                             <div class="mb-2">
                                 <span *ngIf="recipeObj.recipeRating==1 ">
                                     <i class="fa fa-star"></i>
@@ -287,6 +297,8 @@
                                     <i class="fa fa-star"></i>
                                 </span>
                             </div>
+
+                            <!-- Recipe Price  -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <!-- Price -->
@@ -294,7 +306,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between ">
                                     <div class="">
-                                        <!-- button2 -->
+                                        <!-- Decrease button2 -->
                                         <i class="fa  fa-fw fa-minus dec-btn"
                                             (click)="decreaseButton(recipeObj.recipeId)"></i>
 
@@ -303,7 +315,7 @@
                                         <span class="fw-lighter add-item">{{recipeObj.getRecipeQty}}</span>
                                     </div>
                                     <div>
-                                        <!-- button1 -->
+                                        <!--Increase  button1 -->
                                         <i class="fa  fa-fw fa-plus inc-btn"
                                             (click)="increaseButton(recipeObj.recipeId)"></i>
 
@@ -318,9 +330,5 @@
             </div>
 
         </div>
-        <!-- Cart -->
-        <!-- <div class="col-lg-4 p-0" id="cart-details">
-            <app-menu-cart [recipeListObj]="cartRecipeList"></app-menu-cart>
-        </div> -->
     </div>
 </div>

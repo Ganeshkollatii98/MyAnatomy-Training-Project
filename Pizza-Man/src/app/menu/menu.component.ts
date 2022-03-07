@@ -13,16 +13,16 @@ import { Recipe } from './recipe';
 export class MenuComponent implements OnInit {
   recipeItems: any[] = [];
   recipeObjArray: Recipe[] = [];
-  //variables for filtering veg and non-veg
+  //variables for filtering veg and non-veg [CheckBox Variable]
   isVegRecipeSelected = false;
   isNonVegRecipeSelected = false;
-  //variables for filtering price range
+  //variables for filtering price range [CheckBox Variable]
   isRecipePriceEqualTo_100 = false;
   isRecipePriceBet_100to300 = false;
   isRecipePriceBet_300to600 = false;
   isRecipePriceAbove_600 = false;
-  
-  //variables for filtering rating
+
+  //variables for filtering rating [CheckBox Variable]
   isRecipeStarRating_1 = false;
   isRecipeStarRating_2 = false;
   isRecipeStarRating_3 = false;
@@ -30,63 +30,61 @@ export class MenuComponent implements OnInit {
   isRecipeStarRating_5 = false;
   //Storing Filter Array here
   filterRecipeObject: Recipe[] = [];
-  dummyRecipeObj:Recipe[]=[];
-  dummyPriceRangeObj:Recipe[]=[];
-  dummyRatingObj:Recipe[]=[];
-  cartRecipeList:Recipe[]=[];
-  constructor(private router:Router,private cartService:CartService,private MenuRestService: MenuItemsRestService,private menuService:MenuService) {
-    this.recipeObjArray=this.menuService.recipeObjArray;
+  dummyRecipeObj: Recipe[] = [];
+  dummyPriceRangeObj: Recipe[] = [];
+  dummyRatingObj: Recipe[] = [];
+  cartRecipeList: Recipe[] = [];
+  constructor(private router: Router, private cartService: CartService, private MenuRestService: MenuItemsRestService, private menuService: MenuService) {
+    // Calling MenuSerive Recipe Object and assigning to RecipeObject Array
+    this.recipeObjArray = this.menuService.recipeObjArray;
     this.cartService.updateCartDetailsByUser();
   }
-  
+
   ngOnInit(): void {
+    // Update Cart When component initlizations
     this.cartService.updateCartDetailsByUser();
   }
-  ngDoCheck(){
+  ngDoCheck() {
     this.cartRecipeList = this.cartService.cartReipesAfterModefyingForUser;
-    console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<",this.cartRecipeList);
-    
+    // EveryTime We are Checking if Filter is Selected or not
     this.checkingVegAndNonVegFilters();
     this.checkingPriceRangeFilters();
     this.checkingRatingFilters();
     this.menuService.doCheck();
-    // console.log("after checking price range",this.dummyRecipeObj);
   }
 
-  
+
 
   // Handling Recipe Increase Button
-  decreaseButton(recipeId:number){
-    
-    let user=localStorage.getItem('username');
-    if(user!='false')
-    {
+  decreaseButton(recipeId: number) {
+    let user = localStorage.getItem('username');
+    if (user != 'false') {
       this.menuService.handleDecreaseButton(recipeId);
       this.cartService.updateCartDetailsByUser();
-    //  console.log("clciked inc",this.cartService.getCartQuntity());
-      
     }
-    else{
+    else {
       this.router.navigate(['login'])
     }
   }
-  increaseButton(recipeId:number){
-    let user=localStorage.getItem('username');
-    if(user!='false')
-    {
+  // Handling Decrease Button 
+  increaseButton(recipeId: number) {
+    let user = localStorage.getItem('username');
+    if (user != 'false') {
+      // Handling IncreseButton Calling From MenuService 
       this.menuService.handleIncreaseButton(recipeId);
+      // After Increasing updating cart using cartService
       this.cartService.updateCartDetailsByUser();
-      console.log("clciked inc",this.cartService.getCartQuntity());
-
     }
-    else{
+    else {
+      // If UserDon't Have accont and not yet loggedIn and
+      // we are trying to click Increase button it will redirect to Login Page
       this.router.navigate(['login'])
     }
   }
 
-  // Filtering based on type
+  // Filtering based on Recipe Type(veg,non-veg)
   filterRecipeByType(type: string) {
-    console.log(this.isNonVegRecipeSelected, this.isVegRecipeSelected);
+    // For Veg Type
     if (type == 'veg') {
 
       this.recipeObjArray.forEach((recipe) => {
@@ -95,38 +93,40 @@ export class MenuComponent implements OnInit {
         }
       }
       )
-
     }
+    // For Non-Veg Type
     else if (type == 'non-veg') {
       this.recipeObjArray.forEach((recipe) => {
         if (recipe.recipeType == type) {
           this.filterRecipeObject.push(recipe)
         }
       })
-    }  
+    }
+
+  }
+  checkingVegAndNonVegFilters() {
+    // Checking Variables 
    
-  }
-  checkingVegAndNonVegFilters(){
-    console.log(this.isNonVegRecipeSelected,this.isVegRecipeSelected);
-    this.dummyRecipeObj=[];
-    if(this.filterRecipeObject.length>0 
-      &&( (this.isNonVegRecipeSelected==false && this.isVegRecipeSelected==true )
-      ||  (this.isNonVegRecipeSelected==true && this.isVegRecipeSelected==false )
-      || (this.isNonVegRecipeSelected==true || this.isVegRecipeSelected==true )
-    )){
-      this.dummyRecipeObj=this.filterRecipeObject;
-      //  console.log("after Dummy Object " ,this.dummyRecipeObj);
+    this.dummyRecipeObj = [];
+    if (this.filterRecipeObject.length > 0
+      && ((this.isNonVegRecipeSelected == false && this.isVegRecipeSelected == true)
+        || (this.isNonVegRecipeSelected == true && this.isVegRecipeSelected == false)
+        || (this.isNonVegRecipeSelected == true || this.isVegRecipeSelected == true)
+      )) {
+      // Assigning to dummy Object
+      this.dummyRecipeObj = this.filterRecipeObject;
     }
-    else if(this.isNonVegRecipeSelected==false && this.isVegRecipeSelected==false ){
-      this.filterRecipeObject= [];
-      this.dummyRecipeObj=this.recipeObjArray;
-      // console.log("dummy",this.dummyRecipeObj);
+    else if (this.isNonVegRecipeSelected == false && this.isVegRecipeSelected == false) {
+      this.filterRecipeObject = [];
+      // And Assigning to Dummy Object
+      this.dummyRecipeObj = this.recipeObjArray;
     }
   }
+
+  // Filtering based price range 
   filterRecipeByPrice(recipePriceRange: string) {
+    // Based Price Range Under 100Rs
     if (recipePriceRange == '1') {
-      console.log("below 100");
-      
       if (this.filterRecipeObject.length > 0) {
         this.filterRecipeObject = this.filterRecipeObject.filter((recipe) => {
           if (recipe.recipePrice <= 100) {
@@ -137,7 +137,6 @@ export class MenuComponent implements OnInit {
       }
       else {
         this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => {
-          console.log(recipe.recipePrice);
           if (recipe.recipePrice <= 100) {
             return true;
           }
@@ -145,12 +144,11 @@ export class MenuComponent implements OnInit {
         })
       }
     }
-    else if(recipePriceRange=='2'){
-      console.log("above 200");
-      
+    // Based Price Range Between 100 - 300
+    else if (recipePriceRange == '2') {
       if (this.filterRecipeObject.length > 0) {
         this.filterRecipeObject = this.filterRecipeObject.filter((recipe) => {
-          if (recipe.recipePrice >100 && recipe.recipePrice <=300) {
+          if (recipe.recipePrice > 100 && recipe.recipePrice <= 300) {
             return true;
           }
           return false;
@@ -159,19 +157,18 @@ export class MenuComponent implements OnInit {
       }
       else {
         this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => {
-          if (recipe.recipePrice >100 && recipe.recipePrice <=300) {
+          if (recipe.recipePrice > 100 && recipe.recipePrice <= 300) {
             return true;
           }
           return false;
         })
       }
     }
-    else if(recipePriceRange=='3'){
-      console.log("above 300");
-      
+    // Based Price Range Between 300 - 600
+    else if (recipePriceRange == '3') {
       if (this.filterRecipeObject.length > 0) {
         this.filterRecipeObject = this.filterRecipeObject.filter((recipe) => {
-          if (recipe.recipePrice >300 && recipe.recipePrice <=600) {
+          if (recipe.recipePrice > 300 && recipe.recipePrice <= 600) {
             return true;
           }
           return false;
@@ -180,20 +177,18 @@ export class MenuComponent implements OnInit {
       }
       else {
         this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => {
-
-          if (recipe.recipePrice >300 && recipe.recipePrice <=600) {
+          if (recipe.recipePrice > 300 && recipe.recipePrice <= 600) {
             return true;
           }
           return false;
         })
       }
     }
-    else if(recipePriceRange=='4'){
-      console.log("above 400");
-      
+    // Based Price Range Above 600
+    else if (recipePriceRange == '4') {
       if (this.filterRecipeObject.length > 0) {
         this.filterRecipeObject = this.filterRecipeObject.filter((recipe) => {
-          if (recipe.recipePrice >600) {
+          if (recipe.recipePrice > 600) {
             return true;
           }
           return false;
@@ -202,99 +197,70 @@ export class MenuComponent implements OnInit {
       }
       else {
         this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => {
-          console.log(recipe.recipePrice);
-          console.log(recipe.recipePrice);
-          if (recipe.recipePrice >600) {
+          if (recipe.recipePrice > 600) {
             return true;
           }
           return false;
         })
       }
     }
-    // console.log("filter array",this.filterRecipeObject);
-  //  console.log("Updated by dummy price",this.dummyRecipeObj);
-   this.dummyPriceRangeObj=this.filterRecipeObject;
-  //  console.log("dummy object",this.dummyRecipeObj);
-   
+    // AtLast Assigning to PriceObject
+    this.dummyPriceRangeObj = this.filterRecipeObject;
   }
 
-  filterRecipeByRating(recipeRating:number){
-    // console.log("clicke",recipeRating);
-    // console.log("Dummy Recipe Object ",this.dummyRecipeObj);
-    
-    if(recipeRating==1){
-      console.log("Filter with 1 star");
-      this.filterRecipeObject=this.dummyRecipeObj.filter((recipe)=>recipe.recipeRating==recipeRating)
-      console.log("This is filter object after filter with 1 start",this.filterRecipeObject);
-      
+  // Filter With Price Range
+  filterRecipeByRating(recipeRating: number) {
+    // Based on 1 Star rating
+    if (recipeRating == 1) {  
+      this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => recipe.recipeRating == recipeRating)
     }
-    else if(recipeRating==2){
-      console.log("Filter with 2 star");
-      this.filterRecipeObject=this.dummyRecipeObj.filter((recipe)=>recipe.recipeRating==recipeRating)
-      console.log("This is filter object after filter with 2 start",this.filterRecipeObject);  
+    // Based on 2 Star rating
+    else if (recipeRating == 2) {
+      this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => recipe.recipeRating == recipeRating)
     }
-    else if(recipeRating==3)
-    {
-      console.log("Filter with 3 star");
-      this.filterRecipeObject=this.dummyRecipeObj.filter((recipe)=>recipe.recipeRating==recipeRating)
-      console.log("This is filter object after filter with 3 start",this.filterRecipeObject);
+    // Based on 3 Star rating
+    else if (recipeRating == 3) {
+      this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => recipe.recipeRating == recipeRating)
     }
-   else if(recipeRating==4){
-      console.log("Filter with 4 star");
-      this.filterRecipeObject=this.dummyRecipeObj.filter((recipe)=>recipe.recipeRating==recipeRating)
-      console.log("This is filter object after filter with 4 start",this.filterRecipeObject);
-      
+    // Based on 4 Star rating
+    else if (recipeRating == 4) {
+      this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => recipe.recipeRating == recipeRating)
     }
-   else if(recipeRating==5){
-    console.log("Filter with 5 star");
-    this.filterRecipeObject=this.dummyRecipeObj.filter((recipe)=>recipe.recipeRating==recipeRating)
-    console.log("This is filter object after filter with 5 start",this.filterRecipeObject);   
-   }
-   console.log("****************************************");
-  //  console.log("filter array after rating",this.filterRecipeObject);
-  //  console.log("dummy rating object",this.dummyRatingObj);
-   this.dummyRatingObj=this.filterRecipeObject;
-  //  console.log("dummyRatingObject",this.dummyRatingObj);
-  //  console.log("dummy object",this.dummyRecipeObj);
+    // Based on 5 Star rating
+    else if (recipeRating == 5) {
+      this.filterRecipeObject = this.dummyRecipeObj.filter((recipe) => recipe.recipeRating == recipeRating)
+    }
+
+    // And Assigning to dummy Object
+    this.dummyRatingObj = this.filterRecipeObject;
   }
-  checkingPriceRangeFilters(){
-        // console.log(
-        //   this.isRecipePriceEqualTo_100,
-        //   this.isRecipePriceBet_100to300,
-        //   this.isRecipePriceBet_300to600,
-        //   this.isRecipePriceAbove_600
-        // );
-       if(this.dummyRecipeObj.length>0 && 
-        ((this.isRecipePriceEqualTo_100) 
+
+  // Checking Price Filter if Any Range selected it will give particular range Prodcuts
+  //  If not it will give all products with All Ranges
+  checkingPriceRangeFilters() {
+    if (this.dummyRecipeObj.length > 0 &&
+      ((this.isRecipePriceEqualTo_100)
         || (this.isRecipePriceBet_100to300)
-        || (this.isRecipePriceBet_300to600) 
-        || (this.isRecipePriceAbove_600)))
-       {
-        //  console.log("Going to update data after price range filter");
-         
-          this.dummyRecipeObj=this.dummyPriceRangeObj;
-          // console.log(this.dummyRecipeObj);
-       }
+        || (this.isRecipePriceBet_300to600)
+        || (this.isRecipePriceAbove_600))) {
+      // Assigning to Global Dummy  Object
+      this.dummyRecipeObj = this.dummyPriceRangeObj;
+    }
   }
-  checkingRatingFilters(){
-    // console.log(
-    //   this.isRecipePriceEqualTo_100,
-    //   this.isRecipePriceBet_100to300,
-    //   this.isRecipePriceBet_300to600,
-    //   this.isRecipePriceAbove_600
-    // );
-   if(this.dummyRatingObj.length>0 && 
-    ((this.isRecipeStarRating_1) 
-    || (this.isRecipeStarRating_2)
-    || (this.isRecipeStarRating_3) 
-    || (this.isRecipeStarRating_4) 
-    || (this.isRecipeStarRating_5)))
-   {
-    //  console.log("Going to update data after star rating filter");
-      this.dummyRecipeObj=this.dummyRatingObj;
-      // console.log("printing after filter");
-      // console.log(this.dummyRecipeObj);
-   }
- }
+
+  // Checking Rating Filter if Any Rating selected it will give particular Rating Prodcuts
+  //  If not it will give all products with All Ratings
+  checkingRatingFilters() {
+    if (this.dummyRatingObj.length > 0 &&
+      ((this.isRecipeStarRating_1)
+        || (this.isRecipeStarRating_2)
+        || (this.isRecipeStarRating_3)
+        || (this.isRecipeStarRating_4)
+        || (this.isRecipeStarRating_5))) {
+          // Assigning to Global Dummy  Object
+      this.dummyRecipeObj = this.dummyRatingObj;
+      
+    }
+  }
 
 }
