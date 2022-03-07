@@ -17,10 +17,13 @@ import { validateRegisterEmail, validateUserName } from './formValidations';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  // Register component variables 
   users: customer[] = this.login.users;
   isUserAlreayHaveAcount = false;
   userRegistrationForm!: FormGroup;
+
   constructor(private fb: FormBuilder,private authService: AuthService, private router: Router, private login: LoginComponent) { 
+    // Form Group Declarations
     this.userRegistrationForm = this.fb.group({
       username: ["", [Validators.required,validateUserName]],
       email: ["", [Validators.required,validateRegisterEmail]],
@@ -31,19 +34,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    
-
   }
   ngDoCheck() {
 
   }
-
-  //Reactive form
-//   setEmailValidator(){
-//     this.userRegistrationForm.get('email').setValidators(Validators.email);  
-// }
-
-
+  // Fetching all register users with the help of auth service
   getUsers() {
     this.authService.getUsers().subscribe(
       (jsonUsers: any) => {
@@ -54,9 +49,13 @@ export class RegisterComponent implements OnInit {
 
       })
   }
+
+  // If user already have account means it will go to login page
   onClickAlreadyHaveAccount() {
     this.router.navigate(["login"])
   }
+
+  // Handling Register button on Register page and storing in the database
   onSubmitRegister() {
     let username=this.userRegistrationForm.get(['username'])?.value;
     let email=this.userRegistrationForm.get(['email'])?.value;
@@ -66,12 +65,9 @@ export class RegisterComponent implements OnInit {
     let user: customer[] = []
     console.log(email);
 
-    user = this.users.filter((u) =>
-      u.email == email)
-    console.log(user);
-
+    user = this.users.filter((u) =>u.email == email)
+    // Checking if user already have account or not
     if (user.length > 0) {
-      // alert("user already have account")
       this.isUserAlreayHaveAcount = true;
     }
     else {
@@ -89,11 +85,7 @@ export class RegisterComponent implements OnInit {
         }
       )
     }
-
-    this.userRegistrationForm.reset()
-    
-    
+    //  Reseting all inputs 
+    this.userRegistrationForm.reset() 
   }
-
-
 }

@@ -1,68 +1,65 @@
 <div>
-    <!-- <app-register></app-register> -->
+
     <div class=" container  flex-column justify-content-center align-items-center ">
         <!-- //form-control -->
         <!-- style="background-color: rgba(55, 57, 61, 0.5);" -->
-        <form [formGroup]="userRegistrationForm"  class="border-0 m-3">
-
+        <form [formGroup]="userRegistrationForm" class="border-0 m-3">
+            <!-- Form Heading -->
             <div class="row mb-4 fs-1 text-uppercase border-2 border-dark border-bottom">
                 Rigister
             </div>
+            <!-- If user have already account validates and gives error msg if true -->
             <div *ngIf="isUserAlreayHaveAcount"
-                class="text-center text-uppercase p-1 mb-2 border bg-danger fa-2x text-light">user alreay have acount
+                class="text-center text-uppercase p-1 mb-2 border bg-danger fa-1x text-light">user alreay have acount
             </div>
+
+            <!-- Username block  -->
             <div class="mb-3">
                 <div class="input-group">
-
-                    <input formControlName="username" name="username" placeholder="Name" type="text" class="form-control rounded-pill " id="linput">
+                    <input formControlName="username" name="username" placeholder="Name" type="text"
+                        class="form-control rounded-pill " id="linput">
 
                 </div>
 
+                <!-- Reactive forms username validations -->
                 <div
                     *ngIf="( userRegistrationForm.get('username')?.touched) || userRegistrationForm.get('username')?.dirty">
 
-                    <small *ngIf="userRegistrationForm.get('username')?.errors?.['required']" class="px-2" style="color: #724cf9;">Name is
+                    <small *ngIf="userRegistrationForm.get('username')?.errors?.['required']" class="px-2"
+                        style="color: #724cf9;">Name is
                         required</small>
-                        
-
                 </div>
-                <!-- <small *ngIf="(userRegistrationForm.get('username')?.invalid && userRegistrationForm.get('username')?.touched)" class="px-2" style="color: #724cf9;">
-                    Username leanth should be greater then 3!
-                    </small> -->
-
             </div>
-
+            <!-- email block -->
             <div class="mt-4">
                 <div class="input-group">
-                    <input formControlName="email"  name="email" placeholder="Email" type="text" class="form-control  rounded-pill " id="linput">
+                    <input formControlName="email" name="email" placeholder="Email" type="text"
+                        class="form-control  rounded-pill " id="linput">
                 </div>
-                
-                <!-- <div
-                    *ngIf="( userRegistrationForm.get('username')?.touched) || userRegistrationForm.get('username')?.dirty">
-                    <small *ngIf="userRegistrationForm.get('username')?.errors?.['required']" class="px-2" style="color: #724cf9;">Email is
-                        required</small>
-                </div>
-                 -->
-                     <div id="emailHelp" class="form-text text-danger px-2"
+                <!-- Reactive forms email validations -->
+                <div id="emailHelp" class="form-text text-danger px-2"
                     *ngIf="userRegistrationForm.get('email')?.invalid && userRegistrationForm.get('email')?.touched ">
                     Email should contain @ and .com!</div>
-
             </div><br />
-
+            <!-- Password block -->
             <div class="mb-3">
                 <div class="input-group ">
 
-                    <input  formControlName="password" name="password" minlength="6" placeholder="Password" type="password"
-                        class="form-control rounded-pill " id="linput">
+                    <input formControlName="password" name="password" minlength="6" placeholder="Password"
+                        type="password" class="form-control rounded-pill " id="linput">
                 </div>
+                <!-- Reactive forms password validations -->
                 <div
                     *ngIf="( userRegistrationForm.get('password')?.touched) || userRegistrationForm.get('password')?.dirty">
 
-                    <small *ngIf="userRegistrationForm.get('password')?.errors?.['required']" class="px-2" style="color: #724cf9;">Password is
+                    <small *ngIf="userRegistrationForm.get('password')?.errors?.['required']" class="px-2"
+                        style="color: #724cf9;">Password is
                         required</small>
-                        
+
                 </div>
             </div>
+
+            <!-- Confirm password Block -->
             <div class="mb-3">
                 <div class="input-group ">
 
@@ -70,6 +67,8 @@
                         class="form-control rounded-pill " id="linput">
                 </div>
             </div>
+
+            <!-- Register button block -->
             <div>
                 <div>
                     <b>Already registered? <a class="form-link  fs-6 " id="pointer"
@@ -79,7 +78,6 @@
                     [disabled]="!userRegistrationForm.valid" (click)="onSubmitRegister()" value="Register">
             </div>
         </form>
-
     </div>
 
 </div>
