@@ -1,0 +1,21 @@
+{
+    "empolyess":[
+        { 
+            "id":1,
+            "name":"ganesh",
+             "designation":"front end",
+             "email":"ganesh@gmail.com",
+             "password":"Gani@1998"
+
+        },
+        
+        { 
+            "id":2,
+            "name":"Ravi",
+             "designation":"front end",
+             "email":"Ravi@gmail.com",
+             "password":"Ravi@1999"
+
+        }
+    ]
+}
