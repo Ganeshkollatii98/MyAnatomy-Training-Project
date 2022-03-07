@@ -1,3 +1,4 @@
+// Userdetails model and storing those values in payment page
 export class UserDetails{
     email!:string;
     address!:string;

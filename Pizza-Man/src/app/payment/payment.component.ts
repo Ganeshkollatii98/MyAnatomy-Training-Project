@@ -15,6 +15,7 @@ import {UserDetails} from './userDetails';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  // variable declarations 
   editAddress=""
   editPhoneNumber="";
   editPincode=""
@@ -22,29 +23,34 @@ export class PaymentComponent implements OnInit {
   address=""
   phonenumber=""
   pincode!:any;
+
+  // Storing all user details here:
   details!:UserDetails[];
   cartRecipeList!:Recipe[];
+
+  // IsCodSelected
   isCodSelected=false;
   constructor(private menuService:MenuService,private router:Router,private cartRestService:CartRestService,private paymentService:PaymentRestService,private cartService:CartService,private orderService:OrdersService) {
       this.check();
       this.cartService.updateCartDetailsByUser()
      
    }
-
-  ngOnInit(): void {
-  }
-
+  // checking payment mode selected or not
   paymentModeSelected(mode:string){
     this.isCodSelected=true;
   }
   ngDoCheck(){
      this.cartRecipeList = this.cartService.cartReipesAfterModefyingForUser;
   }
+  ngOnInit(): void {
+      
+  }
 
+  // HandlePLaceOrder Button and pushing all cart list to database
   handlePlaceOrderButton(){
       let recipes=this.cartRecipeList;
       let email=localStorage.getItem('username');
-    
+      // Status=0 for all orders at starting stage 
       let status=0;
       this.address=this.address==null ?this.details[0].address:this.address;
       if(email!='false')
@@ -68,20 +74,15 @@ export class PaymentComponent implements OnInit {
            
         }
       )
-      this.cartService.updateCartDetailsByUser();
-      
-      // this.router.navigate(['customer/orders'])
-
-      
+      this.cartService.updateCartDetailsByUser();   
   }
 
   check(){
       let email=localStorage.getItem('username')
-
+      // with the help of payment service fetching orders
       this.paymentService.getDetailsByEmail(email).subscribe(
         (data:any)=>{
           if(data.length>0){
-            
             this.address=data[0].address;
             this.editAddress=data[0].address;
             this.phonenumber=data[0].phonenumber;
@@ -90,18 +91,18 @@ export class PaymentComponent implements OnInit {
             this.pincode=data[0].pincode;
             console.log("hello",data);
             this.details=data;
-            console.log(this.address,this.phonenumber,this.pincode,this.details);
-            
+            // console.log(this.address,this.phonenumber,this.pincode,this.details);
             this.isAddressAdded=true;
           }
           
       },(error)=>{
-         console.log("comming here check it");
-         
+        // Handling error here
          console.log(error);
       }
       )
   }
+
+  // If address not updated add address button will be enabled and we can add userData
   AddAddressButton(address:any,phoneNumber:any,pincode:any){
       let email=localStorage.getItem('username')
       this.paymentService.addAddress(email,address,phoneNumber,pincode).subscribe((data:any)=>{
@@ -112,6 +113,8 @@ export class PaymentComponent implements OnInit {
          console.log(error);
       })
   }
+  // If address already added going to update address
+  // Handling update address button
   updateAddressButton(address:any,phoneNumber:any,pincode:any){
      console.log("iam upadating");
      console.log(address,phoneNumber,pincode);

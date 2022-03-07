@@ -9,23 +9,14 @@
             role="button">Add Address</a>
         
         <div *ngIf="isAddressAdded==true">
-            <!-- <div class=" mt-5">
-                <div class="d-flex">
-                <p class="fs-2 fw-bold">Location</p>
-                <div id="tag-line" class=" flex-grow-1 align-self-center"></div>
-            </div> -->
+              <!-- Displaying user details -->
                <div>
                    <p class="fs-5 fw-bolder">Address:</p>
                    <p>{{address}}</p>
                    <p>Phonenumber: {{phonenumber}}</p>
                    <p>Pincode: {{pincode}}</p>
-
-
-                   <!-- address -->
-                   
                </div>
-               
-               
+                <!--Location  Buttons-->
         <a *ngIf="isAddressAdded==true" class="btn btn-success mt-2 text-capitalize" id="btn" data-bs-toggle="modal" href="#UpdateModelPopUp"
         role="button">Update Address</a>
         </div>
@@ -33,11 +24,14 @@
 
         </div>
     </div>
+
+    <!-- Payment Mode -->
     <div class=" mt-5">
         <div class="d-flex">
         <p class="fs-2 fw-bold">Mode Of Payment</p>
         <div id="tag-line" class="mx-2 flex-grow-1 align-self-center"></div>
     </div>
+        <!-- Radio Button CashOnDelivery -->
         <div>
             <div class="form-check">
                 <input #cmode class="form-check-input border-2" value="cod" type="radio" (change)="isCodSelected && paymentModeSelected(cmode.value)" [(ngModel)]="isCodSelected" name="flexRadioDefault" id="flexRadioDefault1">
@@ -45,18 +39,21 @@
                     cash on delivery
                 </label>
             </div>
+            <!-- Radio Button Wallet -->
             <div class="form-check">
                 <input class="form-check-input border-2"   type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
                 <label class="form-check-label text-capitalize text-dark fw-bolder" for="flexRadioDisabled">
                   <s>Wallet</s>
                 </label>
               </div>
+              <!-- Radio Button Credit/DebitCard -->
               <div class="form-check">
                 <input class="form-check-input border-2" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
                 <label class="form-check-label text-capitalize text-dark fw-bolder" for="flexRadioDisabled">
                   <s>Credit / Debit Card</s>
                 </label>
               </div>
+              <!-- Radio Button NetBanking -->
               <div class="form-check">
                 <input class="form-check-input border-2" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
                 <label class="form-check-label text-capitalize text-dark fw-bolder" for="flexRadioDisabled">
@@ -72,8 +69,6 @@
 
 </div>
 <!-- Successfull model -->
-
-
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
@@ -82,7 +77,7 @@
         <button type="button" class="btn-close" routerLink="/menu" data-bs-dismiss="modal" aria-label="Close" ></button>
       </div>
       <div  id="body" class="position-relative">
-        <!-- Body -->
+        <!-- Success Model Body -->
         <!-- <button style="position: absolute; top:40px;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         <div class="card mb-3" >
             <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
@@ -92,13 +87,10 @@
               <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
             </div>
       </div>
-      <!-- <div class="modal-footer"> -->
-          <!-- footer -->
-      <!-- </div> -->
     </div>
   </div>
 </div>
-<!-- Address Model -->
+<!-- Address Box Model -->
 <div id="model" class="modal fade" id="UpdateModelPopUp" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
