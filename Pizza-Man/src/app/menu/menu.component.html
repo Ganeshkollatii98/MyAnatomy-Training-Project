@@ -1,0 +1,326 @@
+<div class="container" id="container">
+    <div class="d-flex flex-row justify-content-between">
+
+        <div class="row fs-1 text-uppercase" id="menuTitle">
+            Menu
+        </div>
+        <div class="dropdown " id="filterDropDown">
+            <button class="btn btn-secondary dropdown-toggle text-uppercase fw-bold text-light" type="button"
+                id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dropdownMenu">
+                <li>
+                    <div class="container">
+                        <section class="col-12" id="fs_distance_body">
+                            <span class="heading">
+                                By Pizza Type
+                            </span>
+                            <div class="contents">
+                                <ul class="d-flex flex-column justify-content-around">
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <span class="text-capitalize" id="sub-heading">vegetable pizza</span>
+                                        </div>
+                                        <div class="form-check">
+                                            <input #vtype class="form-check-input" type="checkbox" value="veg"
+                                                id="flexCheckChecked"
+                                                (change)="isVegRecipeSelected && filterRecipeByType(vtype.value)"
+                                                [(ngModel)]="isVegRecipeSelected">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div><span class=" text-capitalize" id="sub-heading">non-vegetable pizza</span>
+                                        </div>
+
+                                        <div class="form-check ">
+                                            <input #ntype class="form-check-input" type="checkbox" value="non-veg"
+                                                id="flexCheckChecked" [(ngModel)]="isNonVegRecipeSelected"
+                                                (change)="isNonVegRecipeSelected && filterRecipeByType(ntype.value)">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <hr>
+                </li>
+                <li>
+                    <div class="container">
+                        <section class="col-12" id="fs_distance_body">
+                            <span class="heading">
+                                By Price Range
+                            </span>
+                            <div class="contents">
+                                <ul class="d-flex flex-column justify-content-around">
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <span class="  text-capitalize" id="sub-heading">under 100</span>
+                                        </div>
+                                        <div class="form-check">
+                                            <input #pr1 class="form-check-input" type="checkbox" value="1"
+                                                isRecipePriceEqualTo_100=false; id="flexCheckChecked"
+                                                [(ngModel)]="isRecipePriceEqualTo_100"
+                                                (change)="isRecipePriceEqualTo_100 && filterRecipeByPrice(pr1.value)">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div><span class="  text-capitalize" id="sub-heading">between
+                                                100-300</span> </div>
+                                        <div class="form-check">
+                                            <input #pr2 class="form-check-input" type="checkbox" value="2"
+                                                [(ngModel)]="isRecipePriceBet_100to300"
+                                                (change)="isRecipePriceBet_100to300 && filterRecipeByPrice(pr2.value)"
+                                                id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div><span class=" text-capitalize" id="sub-heading">between
+                                                300-600</span></div>
+
+                                        <div class="form-check ">
+                                            <input #pr3 class="form-check-input" type="checkbox" value="3"
+                                                [(ngModel)]="isRecipePriceBet_300to600"
+                                                (change)="isRecipePriceBet_300to600 && filterRecipeByPrice(pr3.value)"
+                                                id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div><span class=" text-capitalize" id="sub-heading">Above
+                                                600</span></div>
+
+                                        <div class="form-check ">
+                                            <input #pr4 class="form-check-input" type="checkbox" value="4"
+                                                [(ngModel)]="isRecipePriceAbove_600"
+                                                (change)="isRecipePriceAbove_600 && filterRecipeByPrice(pr4.value)"
+                                                id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <hr>
+                </li>
+                <li>
+                    <div class="container">
+                        <section class="col-12" id="fs_distance_body">
+                            <span class="heading">
+                                By Rating
+                            </span>
+                            <div class="contents">
+                                <ul class="d-flex flex-column justify-content-around">
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <!-- Rating -->
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" [(ngModel)]="isRecipeStarRating_1"
+                                                (change)="isRecipeStarRating_1 && filterRecipeByRating(1)"
+                                                type="checkbox" value="" id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <!-- Rating -->
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="form-check ">
+                                            <input class="form-check-input" [(ngModel)]="isRecipeStarRating_2"
+                                                (change)="isRecipeStarRating_2 && filterRecipeByRating(2)"
+                                                type="checkbox" value="" id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <!-- Rating -->
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="form-check ">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="isRecipeStarRating_3"
+                                                (change)="isRecipeStarRating_3 && filterRecipeByRating(3)" value=""
+                                                id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <!-- Rating -->
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="form-check ">
+                                            <input class="form-check-input" [(ngModel)]="isRecipeStarRating_4"
+                                                (change)="isRecipeStarRating_4 && filterRecipeByRating(4)"
+                                                type="checkbox" value="" id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <div>
+                                            <!-- Rating -->
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="form-check ">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="isRecipeStarRating_5"
+                                                (change)="isRecipeStarRating_5 && filterRecipeByRating(5)" value=""
+                                                id="flexCheckChecked">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="mt-1 mb-4 p-0" style="height: 2px; background-color: #000;"></div>
+
+    <div class="row">
+        <!-- Products -->
+        <div class="col-lg-12 col-xs-12  ">
+            <!-- [recipeList]= "dummyRecipeObj" -->
+            <!-- <app-menu-list ></app-menu-list> -->
+            <div class="mb-4">
+                <div class="Best-Seller d-flex ">
+
+                    <p class="fs-2 fw-bold">Pizza Sale</p>
+                    <div id="tag-line" class="mx-2 flex-grow-1 align-self-center"></div>
+                </div>
+                <!-- Producsts Part -->
+                <div class="d-flex flex-wrap justify-content-between" id="item-model">
+                    <div data-aos="zoom-in-right" data-aos-duration="30" class="card-model" id="card-model"
+                        *ngFor="let recipeObj of dummyRecipeObj">
+
+                        <div id="card-model-image">
+                            <img id="recipeTypeIcon" *ngIf="recipeObj.recipeType=='non-veg'"
+                                src="../../../assets/static/images/nonvegicon.svg">
+                            <img id="recipeTypeIcon" *ngIf="recipeObj.recipeType=='veg'"
+                                src="../../../assets/static/images/vegicon.svg">
+                            <img id="card-image" src={{recipeObj.recipeIamge}} alt="">
+                        </div>
+                        <div class="container-fluid d-flex flex-column justify-content-between p-2 mb-2">
+                            <div class="mt-2">
+                                <p class="fa-1x mb-0">{{recipeObj.recipeName}}</p>
+                            </div>
+                            <div>
+                                <p id="card-model-desc" class=" fw-lighter text-muted ">
+                                    {{recipeObj.recipeDescirption}}</p>
+                            </div>
+                            <div class="mb-2">
+                                <span *ngIf="recipeObj.recipeRating==1 ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </span>
+
+                                <span *ngIf="recipeObj.recipeRating==2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </span>
+
+                                <span *ngIf="recipeObj.recipeRating==3">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </span>
+
+                                <span *ngIf="recipeObj.recipeRating==4">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </span>
+
+                                <span *ngIf="recipeObj.recipeRating==5">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <!-- Price -->
+                                    <span>{{recipeObj.recipePrice | currency : 'INR' : 'symbol' : '1.0-0' }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between ">
+                                    <div class="">
+                                        <!-- button2 -->
+                                        <i class="fa  fa-fw fa-minus dec-btn"
+                                            (click)="decreaseButton(recipeObj.recipeId)"></i>
+
+                                    </div>
+                                    <div>
+                                        <span class="fw-lighter add-item">{{recipeObj.getRecipeQty}}</span>
+                                    </div>
+                                    <div>
+                                        <!-- button1 -->
+                                        <i class="fa  fa-fw fa-plus inc-btn"
+                                            (click)="increaseButton(recipeObj.recipeId)"></i>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Cart -->
+        <!-- <div class="col-lg-4 p-0" id="cart-details">
+            <app-menu-cart [recipeListObj]="cartRecipeList"></app-menu-cart>
+        </div> -->
+    </div>
+</div>

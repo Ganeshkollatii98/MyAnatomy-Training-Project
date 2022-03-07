@@ -1,0 +1,65 @@
+#container{
+    width: 70%;
+}
+.inc-btn,.dec-btn{
+    height: 32px;
+    width: 32px;
+    border-radius: 2px;
+    font-size: 16px;
+    border: none;
+    outline: none!important;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8px;
+    transition: .5s;
+}
+.inc-btn:hover,.dec-btn:hover{
+    color: white;
+    background-color: rgba(0,0,0,1);
+    transform: translateY(-.3rem);
+
+}
+#card-model-image{
+    width: 200px;
+    height: auto;
+    overflow: hidden;
+}
+#card-image{
+    background-image: url("../../assets/static/Recipes/paneerPizza.jpg");
+    background-position: 50% center;
+    background-size: center;
+    height: 100%;
+    width: 100%;
+    transition: .3s;
+}
+#orders-items{
+    background-color: #ddd;
+    border-radius: 1rem;
+    overflow: hidden;
+    height:8.5rem ;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px; */
+    transition: .5s;
+}
+#orders-items:hover{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+
+    transform: translateY(-.3rem);
+}
+#checkout-btn{
+    background-color:rgb(114, 76, 249);
+    border-radius: .5rem;
+
+}
+#checkout-btn:hover{
+    background-color:rgb(98, 62, 230);
+    filter: drop-shadow(0 0 0.75rem #724cf9);
+}
+#orderid{
+    color:rgb(114, 76, 249);
+    font-weight: 900;
+    text-decoration: none;
+}

@@ -1,0 +1,99 @@
+<div class="container p-0 " id="container">
+    <div class="row fs-2 text-uppercase mb-1" *ngIf="isCartEmpty==false">
+        your Cart
+        <div class="mt-1 mb-4" style="height: 2px; background-color: #000;"></div>
+    </div>
+    <!-- items -->
+    <div class=" d-flex flex-column justify-content-between ">
+        <!-- item1 -->
+        <div data-aos="zoom-in-right" data-aos-duration="30" id="orders-items" *ngFor="let recipeObj of cartRecipeList" class="d-flex flex-row mb-3">
+            <!-- image -->
+            <div id="card-model-image">
+                <!-- Background image -->
+                <img id="card-image" src={{recipeObj.recipeIamge}} alt="">
+            </div>
+            <div class="d-flex flex-column justify-content-between mx-3 w-100">
+                <!-- Name -->
+                <div class="mt-2 ">
+                    <p class="fa-1x mb-0 fw-bolder">{{recipeObj.recipeName}}</p>
+                </div>
+                <!-- Description -->
+                <div>
+                    <p id="card-model-desc" class=" fw-lighter text-muted ">{{recipeObj.recipeDescirption}}</p>
+                </div>
+                <div class="d-flex justify-content-between  mb-3">
+                    <div>
+                        <!-- Price -->
+                        <span>{{recipeObj.recipePrice*recipeObj.getRecipeQty | currency : 'INR' : 'symbol' : '1.0-0' }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between ">
+                        <div>
+                            <!-- button1 -->
+                            <i class="fa  fa-fw fa-minus dec-btn"
+                                (click)="handleDecreaseButton(recipeObj.recipeId)"></i>
+
+
+                        </div>
+                        <div>
+                            <span class="fw-lighter add-item">{{recipeObj.getRecipeQty}}</span>
+                        </div>
+                        <div class="">
+                            <!-- button2 -->
+                            <i class="fa  fa-fw fa-plus inc-btn" (click)="handleIncreaseButton(recipeObj.recipeId)"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- If cart is empty it will be render  -->
+    <div *ngIf="isCartEmpty==true" class="mt-4 d-flex flex-column align-items-center justify-content-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div>
+                <h4>Cart is Empty</h4>
+            </div>
+            <div>
+                <span style="font-size: 12px;">You probably haven't ordered a pizza yet.</span>
+            </div>
+            <div>
+                <span style="font-size: 12px;">To order a pizza go to the main page.</span>
+            </div>
+        </div>
+        <div class="mb-2 mt-2">
+            <img src="../../assets/static/images/empty-cart.png" id="cartImage" alt="">
+        </div>
+    </div>
+    <!-- Price Details -->
+    <div class="mb-4" *ngIf="isCartEmpty==false">
+        <!-- Price -->
+        <div class="d-flex flex-column my-3">
+            <!-- <div>
+                <span class="fw-bold fa-1x">Price : {{200 | currency : 'INR' : 'symbol' : '1.0-0' }}</span>
+            </div> -->
+            <!-- GST -->
+            <!-- <div>
+                <span class="fw-bold fa-1x">GST : {{200 | currency : 'INR' : 'symbol' : '1.0-0' }} <span>(rate:
+                        2%)</span></span>
+
+            </div> -->
+            <!-- Total Price -->
+            <div>
+                <span class="fw-bold fa-1x">Total Price : {{miniCartRecipesTotalPrice | currency : 'INR' : 'symbol' : '1.0-2' }}</span>
+            </div>
+        </div>
+        <!-- Checkout Button -->
+        <div *ngIf="checkLoggedIn">
+            <input id="checkout-btn" class="btn btn-primary text-uppercase p-2 px-4" (click)="handleCheckoutBtn()" type="button" value="checkout">
+        </div>
+        <!-- If not login -->
+        <div *ngIf="checkLoggedIn==false">
+            <input id="checkout-btn" class="btn btn-primary text-uppercase p-2 px-4" routerLink="/login" type="button" value="Login To Checkout">
+        </div>
+        
+
+    </div>
+</div>

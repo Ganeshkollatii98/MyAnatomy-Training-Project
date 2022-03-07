@@ -1,0 +1,46 @@
+<div id="container-1" class=" container-fluid  flex-column justify-content-center align-items-center ">
+    <!-- //form-control -->
+    <!-- style="background-color: rgba(55, 57, 61, 0.5);" -->
+    <!-- #authLoginForm="ngForm" -->
+    <div id="login">
+    <div class="container" >
+        
+<form [formGroup]="loginForm"  class="border-0 py-3" >
+        
+    <div class="row fs-1 text-uppercase border-2 border-dark border-bottom">
+        login
+    </div>
+    <div class="mt-4">
+        <div class="input-group">
+            <!-- ngModel name="email" -->
+            <input  placeholder="Email" formControlName="email" type="text" class="form-control  rounded-pill " id="linput"  email required>
+        </div>
+        <div id="emailHelp" class="form-text text-danger px-2"
+                    *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ">
+                    Email should contain @ and .com!</div>
+    </div><br />
+    <div class="mb-3">
+        <div class="input-group ">
+            <!-- ngModel name="password" -->
+            <input  placeholder="Password" formControlName="password" type="password" class="form-control rounded-pill " id="linput"  minlength="6" required>
+        </div>
+        <div
+                    *ngIf="( loginForm.get('password')?.touched) || loginForm.get('password')?.dirty">
+
+                    <small *ngIf="loginForm.get('password')?.errors?.['required']" class="px-2" style="color: #724cf9;">Password is
+                        required</small>
+                        
+                </div>
+    </div>
+    <div>
+        <div>
+        <b>Not yet registered ? <a id="pointer"  class="form-link  fs-6 " (click)="handleLinkRegister()">Register</a></b>
+        </div>
+    </div>
+        <input id="btn" type="submit" [disabled]="!loginForm.valid" (click)="onSubmitLogin()" class="btn rounded btn-primary fs-4 " value="Login" >
+        
+</form>
+    
+</div>
+</div>
+
