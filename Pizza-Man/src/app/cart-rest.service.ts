@@ -47,7 +47,7 @@ export class CartRestService {
     return this.http.delete(this.URL,options);
   }
 
-  // Delete All Recipes For user
+  // Delete All Recipes For Particular user
   deleteRecipesForUsername(email:any){
     let username=email;
     return this.http.delete(this.URL+"/"+username);
