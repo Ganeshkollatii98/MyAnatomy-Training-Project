@@ -14,7 +14,7 @@ export class CartService {
   cartReipesAfterModefying:Recipe[]=[]
   recipeList:Recipe[]=[];
 
-  // new
+  // newVariables in cart page
   cartRecipesByUser:CartModel[]=[];
   cartReipesAfterModefyingForUser:Recipe[]=[];
   cartTotalPrice=0;
@@ -26,6 +26,8 @@ export class CartService {
     this.updateCartDetailsByUser();
     this.recipeList=this.menuService.recipeObjArray;
   }
+
+  // Get All cart items 
   getCartItems(){
     this.cartRestService.getAllCartItems().subscribe((data:any)=>{
       this.cartRecipesFromDb=data;
@@ -34,35 +36,7 @@ export class CartService {
     })
   }
   
-  // updateCartItems(){
-  //   console.log("updating mini****************");
-  //   this.cartReipesAfterModefying=[];
-  //   console.log(this.menuService.userRecipesInCart);
-  //   this.menuService.userRecipesInCart.forEach((crecipe)=>{
-          
-  //         let mainRecipe=this.recipeList.filter((mrecipe)=>{
-  //           if(crecipe.recipeId==mrecipe.recipeId)
-  //           {
-  //             mrecipe.setRecipeQty=crecipe.recipeQty;
-  //             return true;
-  //           }
-  //           else{
-  //              mrecipe.setRecipeQty=0;
-  //              return false;
-  //           }
-  //           return false;
-  //         })
-  //         console.log("Main Recipe???????????///??");
-  //         this.cartReipesAfterModefying.push(mainRecipe[0]); 
-  //   })
-  //   console.log("**********************************");
-  //   console.log("i watn this ``````````");
-  //   console.log(this.cartReipesAfterModefying);
-    
-  // }
-
-
-  // New
+  // Update Cart details with username
   updateCartDetailsByUser(){
     this.cartReipesAfterModefyingForUser=[]
      let user=localStorage.getItem('username')
@@ -86,15 +60,15 @@ export class CartService {
           this.cartTotalPrice=this.getCartTotalPrice();
           this.cartTotalQuantity=this.getCartQuntity();
       }
-      console.log("After Long Time",this.cartReipesAfterModefyingForUser);
-      
       },
        (error)=>{
+        //  errors handling
           console.log(error);
        }
       )
   }
 
+  // Fetching  all cart items total price
   getCartTotalPrice():number{
      let totalPrice=0;
        this.cartRecipesByUser.forEach((recipe)=>{
@@ -102,6 +76,8 @@ export class CartService {
        })
        return totalPrice;
   }
+ 
+  // Fetching all Cart items quentity
   getCartQuntity():number{
       let totalQty=0;
       this.cartRecipesByUser.forEach((recipe)=>{
