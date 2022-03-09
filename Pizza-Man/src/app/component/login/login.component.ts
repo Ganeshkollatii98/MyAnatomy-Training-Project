@@ -5,7 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
-import { MenuService } from '../menu.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { validateRegisterEmail } from '../register/formValidations';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import * as AOS from 'aos';
-import { MenuService } from '../menu.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from '../menu/recipe';
-import { CartService } from '../cart.service';
+import { CartService } from '../../services/cartService/cart.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

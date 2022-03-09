@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CartRestService } from './cart-rest.service';
+import { CartRestService } from '../cartService/cart-rest.service';
 // import { CartService } from './cart.service';
-import { CartModel } from './cart/cartModel';
+import { CartModel } from '../../component/cart/cartModel';
 import { MenuItemsRestService } from './menu-items-rest.service';
-import { Recipe } from './menu/recipe';
+import { Recipe } from '../../component/menu/recipe';
 
 @Injectable({
   providedIn: 'root'

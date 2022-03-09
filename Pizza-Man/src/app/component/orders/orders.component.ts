@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../menu.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from '../menu/recipe';
-import { OrdersService } from '../orders.service';
-import { PaymentRestService } from '../payment-rest.service';
+import { OrdersService } from '../../services/ordersService/orders.service';
+import { PaymentRestService } from '../../services/paymentService/payment-rest.service';
 
 @Component({
   selector: 'app-orders',

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CartRestService } from './cart-rest.service';
-import { CartModel } from './cart/cartModel';
-import { MenuItemsRestService } from './menu-items-rest.service';
-import { MenuService } from './menu.service';
-import { MenuComponent } from './menu/menu.component';
-import { Recipe } from './menu/recipe';
+import { CartModel } from '../../component/cart/cartModel';
+import { MenuItemsRestService } from '../menuService/menu-items-rest.service';
+import { MenuService } from '../menuService/menu.service';
+import { MenuComponent } from '../../component/menu/menu.component';
+import { Recipe } from '../../component/menu/recipe';
 
 @Injectable({
   providedIn: 'root'

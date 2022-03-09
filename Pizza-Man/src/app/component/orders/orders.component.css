@@ -27,7 +27,7 @@
     overflow: hidden;
 }
 #card-image{
-    background-image: url("../../assets/static/Recipes/paneerPizza.jpg");
+    background-image: url("../../../assets/static/Recipes/paneerPizza.jpg");
     background-position: 50% center;
     background-size: center;
     height: 100%;
@@ -58,6 +58,8 @@
     background-color:rgb(98, 62, 230);
     filter: drop-shadow(0 0 0.75rem #724cf9);
 }
-#cartImage{
-    width: 32rem;
+#orderid{
+    color:rgb(114, 76, 249);
+    font-weight: 900;
+    text-decoration: none;
 }

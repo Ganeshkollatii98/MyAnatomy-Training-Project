@@ -1,12 +1,12 @@
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
-import { MenuItemsRestService } from 'src/app/menu-items-rest.service';
+import { MenuItemsRestService } from 'src/app/services/menuService/menu-items-rest.service';
 import { MenuComponent } from '../menu.component';
 
 import * as AOS from 'aos';
 import { Recipe } from '../recipe';
-import { MenuService } from 'src/app/menu.service';
+import { MenuService } from 'src/app/services/menuService/menu.service';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/cart.service';
+import { CartService } from 'src/app/services/cartService/cart.service';
 
 @Component({
   selector: 'app-menu-list',

@@ -5,9 +5,9 @@ import { MenuListComponent } from '../menu-list/menu-list.component';
 import { MenuComponent } from '../menu.component';
 import { Recipe } from '../recipe';
 import * as AOS from 'aos';
-import { MenuService } from 'src/app/menu.service';
-import { CartService } from 'src/app/cart.service';
-import { CartRestService } from 'src/app/cart-rest.service';
+import { MenuService } from 'src/app/services/menuService/menu.service';
+import { CartService } from 'src/app/services/cartService/cart.service';
+import { CartRestService } from 'src/app/services/cartService/cart-rest.service';
 @Component({
   selector: 'app-menu-cart',
   templateUrl: './menu-cart.component.html',

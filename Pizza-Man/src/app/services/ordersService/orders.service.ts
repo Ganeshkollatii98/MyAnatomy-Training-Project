@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CartService } from './cart.service';
-import { Recipe } from './menu/recipe';
+import { CartService } from '../cartService/cart.service';
+import { Recipe } from '../../component/menu/recipe';
 
 @Injectable({
   providedIn: 'root'

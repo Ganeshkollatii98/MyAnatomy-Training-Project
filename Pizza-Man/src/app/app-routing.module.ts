@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { MenuComponent } from './menu/menu.component';
-import { OrdersComponent } from './orders/orders.component';
-import { PaymentComponent } from './payment/payment.component';
-import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './component/cart/cart.component';
+import { HomeComponent } from './component/home/home.component';
+import { LoginComponent } from './component/login/login.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { OrdersComponent } from './component/orders/orders.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},

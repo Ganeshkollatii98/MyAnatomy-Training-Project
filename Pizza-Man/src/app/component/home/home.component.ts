@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as AOS from 'aos';
-import { CartService } from '../cart.service';
+import { CartService } from '../../services/cartService/cart.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartRestService } from '../cart-rest.service';
-import { CartService } from '../cart.service';
-import { MenuService } from '../menu.service';
+import { CartRestService } from '../../services/cartService/cart-rest.service';
+import { CartService } from '../../services/cartService/cart.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from '../menu/recipe';
 import { CartModel } from './cartModel';
 import * as AOS from 'aos';

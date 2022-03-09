@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartRestService } from '../cart-rest.service';
-import { CartService } from '../cart.service';
-import { MenuService } from '../menu.service';
+import { CartRestService } from '../../services/cartService/cart-rest.service';
+import { CartService } from '../../services/cartService/cart.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from '../menu/recipe';
-import { OrdersService } from '../orders.service';
+import { OrdersService } from '../../services/ordersService/orders.service';
 import { OrdersComponent } from '../orders/orders.component';
-import { PaymentRestService } from '../payment-rest.service';
+import { PaymentRestService } from '../../services/paymentService/payment-rest.service';
 import {UserDetails} from './userDetails';
 
 @Component({

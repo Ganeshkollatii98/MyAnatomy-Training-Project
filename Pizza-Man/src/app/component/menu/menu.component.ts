@@ -1,8 +1,8 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../cart.service';
-import { MenuItemsRestService } from '../menu-items-rest.service';
-import { MenuService } from '../menu.service';
+import { CartService } from '../../services/cartService/cart.service';
+import { MenuItemsRestService } from '../../services/menuService/menu-items-rest.service';
+import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from './recipe';
 
 @Component({
