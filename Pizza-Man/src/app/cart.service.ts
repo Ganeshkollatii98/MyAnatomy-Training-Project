@@ -80,8 +80,9 @@ export class CartService {
   // Fetching all Cart items quentity
   getCartQuntity():number{
       let totalQty=0;
-      this.cartRecipesByUser.forEach((recipe)=>{
-        totalQty+=recipe.recipeQty;
+      // cartReipesAfterModefyingForUser
+      this.cartReipesAfterModefyingForUser.forEach((recipe)=>{
+        totalQty+=recipe.getRecipeQty;
     })
     return totalQty;
   }

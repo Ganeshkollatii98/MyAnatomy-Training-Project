@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { MenuItemsRestService } from '../menu-items-rest.service';
@@ -34,14 +34,19 @@ export class MenuComponent implements OnInit {
   dummyPriceRangeObj: Recipe[] = [];
   dummyRatingObj: Recipe[] = [];
   cartRecipeList: Recipe[] = [];
+
   constructor(private router: Router, private cartService: CartService, private MenuRestService: MenuItemsRestService, private menuService: MenuService) {
     // Calling MenuSerive Recipe Object and assigning to RecipeObject Array
     this.recipeObjArray = this.menuService.recipeObjArray;
     this.cartService.updateCartDetailsByUser();
+    console.log(this.recipeObjArray);
+    
+    this.doCheck(); 
   }
 
   ngOnInit(): void {
     // Update Cart When component initlizations
+    // this.doCheck();
     this.cartService.updateCartDetailsByUser();
   }
   ngDoCheck() {
@@ -50,7 +55,27 @@ export class MenuComponent implements OnInit {
     this.checkingVegAndNonVegFilters();
     this.checkingPriceRangeFilters();
     this.checkingRatingFilters();
-    this.menuService.doCheck();
+    // this.menuService.doCheck();
+  }
+  // ngOnChanges(){
+  //   this.doCheck();
+  // }
+
+  // If 
+  doCheck() {
+    console.log("Ng Do Change called in menu page");
+    console.log("Cart Quantity",this.cartService.getCartQuntity());
+    console.log("dummy array",this.dummyRecipeObj);
+    console.log("recipeObjArrays",this.recipeObjArray);
+    this.cartService.updateCartDetailsByUser();
+    if(this.dummyPriceRangeObj.length==0){
+      if (this.cartService.getCartQuntity()== 0 || localStorage.getItem('username') == 'false') {
+        this.recipeObjArray.forEach((recipe) => {
+          
+          recipe.setRecipeQty = 0;
+        })
+      }
+    }
   }
 
 
@@ -106,7 +131,6 @@ export class MenuComponent implements OnInit {
   }
   checkingVegAndNonVegFilters() {
     // Checking Variables 
-   
     this.dummyRecipeObj = [];
     if (this.filterRecipeObject.length > 0
       && ((this.isNonVegRecipeSelected == false && this.isVegRecipeSelected == true)
@@ -246,6 +270,9 @@ export class MenuComponent implements OnInit {
       // Assigning to Global Dummy  Object
       this.dummyRecipeObj = this.dummyPriceRangeObj;
     }
+    else{
+      this.dummyRecipeObj=this.recipeObjArray;
+    }
   }
 
   // Checking Rating Filter if Any Rating selected it will give particular Rating Prodcuts
@@ -260,6 +287,9 @@ export class MenuComponent implements OnInit {
           // Assigning to Global Dummy  Object
       this.dummyRecipeObj = this.dummyRatingObj;
       
+    }
+    else{
+      this.dummyRecipeObj=this.recipeObjArray;
     }
   }
 

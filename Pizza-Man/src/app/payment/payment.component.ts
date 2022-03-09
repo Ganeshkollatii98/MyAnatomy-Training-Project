@@ -67,16 +67,21 @@ export class PaymentComponent implements OnInit {
       this.cartRestService.deleteRecipesForUsername(email).subscribe(
         (data)=>{
             this.cartRestService.getAllCartItems();
-           
+            this.cartService.updateCartDetailsByUser(); 
         },
         (error)=>{
            console.log(error);
            
         }
       )
-      this.cartService.updateCartDetailsByUser();   
+        
   }
-
+  
+  handleCloseIconOnSuccess(){
+    // this.cartRestService.getAllCartItems();
+    // this.cartService.updateCartDetailsByUser();
+    this.router.navigate(['menu']);
+  }
   check(){
       let email=localStorage.getItem('username')
       // with the help of payment service fetching orders
