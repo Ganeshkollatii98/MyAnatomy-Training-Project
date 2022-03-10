@@ -15,16 +15,13 @@ export class HeaderComponent implements OnInit {
   cartRecipeQty=0
   totalQtyInCart=0;
   constructor(private menuService:MenuService , private cartService:CartService) { 
-      localStorage.setItem('isLoggedIn','false');
-      localStorage.setItem('username','false');
       this.isLoggedIn =localStorage.getItem('isLoggedIn')=='false'?false:true;
-      // this.cartRecipeQty=this.getRecipesTotalCount(); 
+      this.cartService.getCartItems();
       this.cartService.updateCartDetailsByUser();
   }
   ngDoCheck(){
       this.isLoggedIn =localStorage.getItem('isLoggedIn')=='false'?false:true;
-      this.cartRecipes=this.menuService.getRecipesFromMenu().filter((recipe)=>recipe.getRecipeQty>0);
-      this.totalQtyInCart=this.getRecipesTotalCount();
+      this.getRecipesTotalCount();
   }
 
   ngOnInit(): void {
@@ -34,8 +31,7 @@ export class HeaderComponent implements OnInit {
   // When we click on logout link on heder it will setting localhost 
   handleLogoutInNavBar(){
       localStorage.setItem('isLoggedIn','false');
-      localStorage.setItem('username','false');
-      this.isLoggedIn=localStorage.getItem('isLoggedIn')=='false'?false:true 
+      localStorage.setItem('username','false');  
   }
 
 
@@ -43,10 +39,10 @@ export class HeaderComponent implements OnInit {
   getRecipesTotalCount(){
     if(localStorage.getItem('username')=='false')
     {
-       return 0;
+       this.totalQtyInCart=0;
     }else{
       // this.cartService.getCartItems();
-      return this.cartService.getCartQuntity();
+      this.totalQtyInCart=this.cartService.getCartQuntity();
     }
   }
 

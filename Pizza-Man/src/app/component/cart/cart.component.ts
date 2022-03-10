@@ -6,6 +6,7 @@ import { MenuService } from '../../services/menuService/menu.service';
 import { Recipe } from '../menu/recipe';
 import { CartModel } from './cartModel';
 import * as AOS from 'aos';
+import dataConstent from '../data.constant';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -23,19 +24,18 @@ export class CartComponent implements OnInit {
   // Checking if user is loggedin or not
   checkLoggedIn=localStorage.getItem('isLoggedIn')=='false'?false:true; 
   recipeListObj:Recipe[]=[];
+  cartEmptyDesc1=dataConstent.cartEmpty.desc1;
+  cartEmptyDesc2=dataConstent.cartEmpty.desc2;
   constructor(private router:Router,private menuService:MenuService,private cartService:CartService,private cartRestService:CartRestService) { 
-    //  this.getCartItems();
+    this.checkIsCartEmpty();
      this.menuService.getCartItemsFromServer();
      this.recipeListObj=this.menuService.recipeObjArray;
-     console.log("please check this");
-     
      this.cartService.updateCartDetailsByUser()
-     AOS.init();
-
   }
   ngOnInit(): void {
     // creating instance for Animation on scroll library
     AOS.init();
+
   }
   ngDoCheck(){ 
     this.cartRecipeList = this.cartService.cartReipesAfterModefyingForUser;
@@ -45,7 +45,6 @@ export class CartComponent implements OnInit {
 
   // Checking if cart is empty or not
   checkIsCartEmpty() {
-    
     if (this.cartRecipeList.length > 0) {
       // console.log("cart not empty");
       this.isCartEmpty = false;
@@ -61,12 +60,14 @@ export class CartComponent implements OnInit {
     this.menuService.handleIncreaseButton(recipeId);
     this.cartService.updateCartDetailsByUser();
     this.cartRecipeList = this.cartService.cartReipesAfterModefyingForUser;
+    this.updateMiniCartTotalPrice();
   }
   // Decrease button in cart products
   handleDecreaseButton(recipeId:number){
     this.menuService.handleDecreaseButton(recipeId);
     this.cartService.updateCartDetailsByUser();
     this.cartRecipeList = this.cartService.cartReipesAfterModefyingForUser;
+    this.updateMiniCartTotalPrice();
     
   }
 
