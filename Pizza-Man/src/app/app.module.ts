@@ -17,6 +17,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { CartService } from './services/cartService/cart.service';
 import { MenuService } from './services/menuService/menu.service';
 import { PaymentComponent } from './component/payment/payment.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PaymentComponent } from './component/payment/payment.component';
     RegisterComponent,
     OrdersComponent,
     CartComponent,
-    PaymentComponent
+    PaymentComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

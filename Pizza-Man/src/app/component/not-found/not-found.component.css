@@ -1,0 +1,22 @@
+#bg{
+    background-color: rgb(249 245 242);
+    height: 89vh;
+
+}
+#image{
+    width: 50rem;
+    
+}
+#btn{
+    margin-top: 1.5rem;
+    background-color:#522bdf ;
+    padding: .5rem;
+    border-radius: 2rem;
+    transition: 1s;
+}
+#btn:hover{
+    transform: translateY(-.5rem);
+    background-color:#724cf9 ;
+    border: 1px solid black;
+    filter: drop-shadow(0 0 0.75rem #522bdf);
+}

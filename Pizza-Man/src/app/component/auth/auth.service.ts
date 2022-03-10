@@ -11,8 +11,6 @@ export class AuthService {
 
   // This URL is main url of my server
   URL="http://localhost:8080/api"
- 
- 
   constructor(private http:HttpClient) { 
 
   }
