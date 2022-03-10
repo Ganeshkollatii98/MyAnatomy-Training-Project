@@ -270,9 +270,6 @@ export class MenuComponent implements OnInit {
       // Assigning to Global Dummy  Object
       this.dummyRecipeObj = this.dummyPriceRangeObj;
     }
-    else{
-      this.dummyRecipeObj=this.recipeObjArray;
-    }
   }
 
   // Checking Rating Filter if Any Rating selected it will give particular Rating Prodcuts
@@ -288,9 +285,7 @@ export class MenuComponent implements OnInit {
       this.dummyRecipeObj = this.dummyRatingObj;
       
     }
-    else{
-      this.dummyRecipeObj=this.recipeObjArray;
-    }
+    
   }
 
 }

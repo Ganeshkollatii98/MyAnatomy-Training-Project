@@ -245,9 +245,9 @@
                             <img id="card-image" src={{recipeObj.recipeIamge}} alt="">
                         </div>
                         <!-- Products part-2 -->
-                        <div class="container-fluid d-flex flex-column justify-content-between p-2 mb-2">
+                        <div id="card-model-content" class="container-fluid d-flex flex-column justify-content-between p-2 mb-2">
                             <!-- Recipe Name -->
-                            <div class="mt-2">
+                            <div class="">
                                 <p class="fa-1x mb-0">{{recipeObj.recipeName}}</p>
                             </div>
                             <!-- Recipe Description -->
@@ -256,8 +256,8 @@
                                     {{recipeObj.recipeDescirption}}</p>
                             </div>
                             <!-- Recipe Rating Based on Given -->
-                            <div class="mb-2">
-                                <span *ngIf="recipeObj.recipeRating==1 ">
+                            <div class="">
+                                <span *ngIf="recipeObj.recipeRating==1">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
